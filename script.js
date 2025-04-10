@@ -196,7 +196,7 @@
 
   // Al caricamento, carica la configurazione, prepara la UI e imposta i listener
   window.addEventListener("load", async () => {
-    await delay(30000);
+    await delay(3000);
     const config = await loadGameConfig();
     loadedParams = {
       prompt_start: config["Prompt iniziale"],
