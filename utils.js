@@ -2,6 +2,18 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function waitForFinalAriaStatus() {
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      const statusElement = document.querySelector('span[role="status"][aria-live="assertive"]');
+      if (statusElement) {
+        clearInterval(interval);
+        resolve();
+      }
+    }, 100);
+  });
+}
+
 function escapeHtml(text) {
   return text
     .replace(/&/g, "&amp;")
