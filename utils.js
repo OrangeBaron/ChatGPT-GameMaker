@@ -1,26 +1,3 @@
-function waitForChatGPTReady() {
-  const elem = location.href.includes("/c/") ? 'span[role="status"][aria-live="assertive"]' : 'div.relative.h-full';
-  return new Promise((resolve, reject) => {
-    const observer = new MutationObserver(mutations => {
-      for (const mutation of mutations) {
-        for (const node of mutation.addedNodes) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.matches(elem)) {
-              observer.disconnect();
-              return resolve();
-            }
-          }
-        }
-      }
-    });
-    observer.observe(document.documentElement, { childList: true, subtree: true });
-    setTimeout(() => {
-      observer.disconnect();
-      reject(new Error("Timeout: nodo atteso non trovato."));
-    }, 5000);
-  });
-}
-
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
